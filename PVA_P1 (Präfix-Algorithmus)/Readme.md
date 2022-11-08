@@ -1,5 +1,7 @@
 Eingaben in Terminal:
-
+```bash
+   mkdir build
+   ```
 $mkdir build
 $cd build
 $cmake .. 
