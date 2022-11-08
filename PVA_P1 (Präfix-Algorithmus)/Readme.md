@@ -2,17 +2,8 @@ Eingaben im Terminal:
 
 ```bash
    mkdir build
-```
-
-```bash
    cd build
-```
-
-```bash
    cmake ..
-```
-
-```bash
    make
 ```
 
