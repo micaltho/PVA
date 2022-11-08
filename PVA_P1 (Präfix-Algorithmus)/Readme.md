@@ -1,10 +1,19 @@
-Eingaben in Terminal:
+Eingaben im Terminal:
+
 ```bash
    mkdir build
-   ```
-$mkdir build
-$cd build
-$cmake .. 
-$make
+```
+
+```bash
+   cd build
+```
+
+```bash
+   cmake ..
+```
+
+```bash
+   make
+```
 
 Anschließend können ./main_parallel und ./main_sequentiell gestartet werden
