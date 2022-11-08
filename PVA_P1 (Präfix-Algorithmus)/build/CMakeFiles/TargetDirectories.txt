@@ -1,0 +1,4 @@
+/home/micaltho/PVA Praktikum/PVA_P1 (Präfix-Algorithmus)/build/CMakeFiles/main_sequentiell.dir
+/home/micaltho/PVA Praktikum/PVA_P1 (Präfix-Algorithmus)/build/CMakeFiles/main_parallel.dir
+/home/micaltho/PVA Praktikum/PVA_P1 (Präfix-Algorithmus)/build/CMakeFiles/edit_cache.dir
+/home/micaltho/PVA Praktikum/PVA_P1 (Präfix-Algorithmus)/build/CMakeFiles/rebuild_cache.dir

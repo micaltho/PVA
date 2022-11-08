@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/main_parallel.dir/main_parallel.o -o main_parallel  -ltbb 
