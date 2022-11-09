@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/main_gewinn.dir/main_gewinn.o -o main_gewinn 
