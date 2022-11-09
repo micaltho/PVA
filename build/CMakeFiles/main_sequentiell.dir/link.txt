@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/main_sequentiell.dir/main_sequentiell.o -o main_sequentiell  -ltbb 
