@@ -1,3 +1,0 @@
-/home/micaltho/PVA Praktikum/PVA_P3 (Dijkstra)/build/CMakeFiles/main_Dijkstra.dir
-/home/micaltho/PVA Praktikum/PVA_P3 (Dijkstra)/build/CMakeFiles/edit_cache.dir
-/home/micaltho/PVA Praktikum/PVA_P3 (Dijkstra)/build/CMakeFiles/rebuild_cache.dir
