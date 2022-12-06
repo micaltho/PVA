@@ -1,0 +1,3 @@
+/home/micaltho/PVA Praktikum/PVA_P3 (Langford oneAPI)/build/CMakeFiles/main_Langford.dir
+/home/micaltho/PVA Praktikum/PVA_P3 (Langford oneAPI)/build/CMakeFiles/edit_cache.dir
+/home/micaltho/PVA Praktikum/PVA_P3 (Langford oneAPI)/build/CMakeFiles/rebuild_cache.dir
