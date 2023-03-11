@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/src/main.cpp" "CMakeFiles/main_Langford.dir/src/main.cpp.o" "gcc" "CMakeFiles/main_Langford.dir/src/main.cpp.o.d"
+  "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/src/main.cpp" "CMakeFiles/main_Langford.dir/src/main.cpp.o" "gcc" "CMakeFiles/main_Langford.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

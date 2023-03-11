@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)"
+CMAKE_SOURCE_DIR = "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/build"
+CMAKE_BINARY_DIR = "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/main_Langford.dir/clean
 CMakeFiles/main_Langford.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_Langford.dir/build.make CMakeFiles/main_Langford.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main_Langford.dir/build.make CMakeFiles/main_Langford.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/build/CMakeFiles" --progress-num=1,2 "Built target main_Langford"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/build/CMakeFiles" --progress-num=1,2 "Built target main_Langford"
 .PHONY : CMakeFiles/main_Langford.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main_Langford.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/build/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main_Langford.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/build/CMakeFiles" 0
 .PHONY : CMakeFiles/main_Langford.dir/rule
 
 # Convenience name for target.

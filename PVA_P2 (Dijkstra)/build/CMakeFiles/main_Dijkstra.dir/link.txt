@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/main_Dijkstra.dir/src/main.cpp.o -o main_Dijkstra  -Wl,-rpath,/opt/intel/oneapi/tbb/2021.6.0/lib/intel64/gcc4.8 /opt/intel/oneapi/tbb/2021.6.0/lib/intel64/gcc4.8/libtbb.so.12 
+/usr/bin/c++ CMakeFiles/main_Dijkstra.dir/src/main.cpp.o -o main_Dijkstra  /usr/lib/x86_64-linux-gnu/libtbb.so.12.5 

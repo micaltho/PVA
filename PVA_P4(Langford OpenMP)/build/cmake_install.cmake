@@ -1,4 +1,4 @@
-# Install script for directory: /home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)
+# Install script for directory: /home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/micaltho/PVA Praktikum/PVA_P4(Langford OpenMP)/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/micaltho/Git_Updates/pva/PVA_P4(Langford OpenMP)/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

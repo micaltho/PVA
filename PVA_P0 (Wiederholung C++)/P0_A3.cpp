@@ -9,87 +9,63 @@
 
 #include <iostream>
 #include <vector>
-#include <stdlib.h>
 #include <queue>
-#include <time.h>
+#include <random>
+#include <chrono>
 #include <algorithm>
-#include <functional>
-
-//Ausgaben der queue
-template<typename T>
-void print_queue(T q) {
-	while (!q.empty()) {
-		std::cout << q.top() << std::endl;
-		q.pop();
-	}
-}
-
-//Lamda-Funktion zum Füllen des Vektors mit Zufallsbuchstaben
-auto CreateRandomLetters = []() -> char {
-		int r;
-		int r2;
-		char c;
-		r = rand() % 26;
-		r2 = rand() % 2;
-		if (r2 % 2 == 0) {
-			c = 'a' + r;
-			return c;
-		}
-		else {
-			c = 'A' + r;
-			return c;
-		}
-	};
-
-//Ausgaben der queue
-auto print = [](char a) -> void {
-		std::cout << a << std::endl;
-	};
-
-auto Compare = [](char a, char b) {
-		if (a > 91 & b < 91) { return ((a - 32) > b); }
-		else if (a > 91 & b > 91) { return ((a - 32) > (b - 32)); }
-		else if (a < 91 & b > 91) { return (a > (b - 32)); }
-		else { return (a > b); }
-	};
 
 using namespace std;
 
-int main()
-{
-	double time1 = 0.0, tstart;
-	int n;
-	cout << "Hello, Char World!" << endl;
-	cout << "Enter the number of characters: ";
-	cin >> n;
+// Ausgabe der queue
+template<typename T>
+void print_queue(T q) {
+    while (!q.empty()) {
+        cout << q.top() << endl;
+        q.pop();
+    }
+}
 
-	//Vektor anlegen
-	vector<char> v(n);
+// Lambda-Funktion zum Erstellen von Zufallsbuchstaben
+auto create_random_letter = []() -> char {
+    static random_device rd;
+    static mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, 51);
+    const string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return letters[dis(gen)];
+};
 
-	//Zufällige Buchstaben erzeugen + Zeit messen
-	srand(time(NULL));
-	tstart = clock();
-	generate(v.begin(), v.end(), CreateRandomLetters);
-	time1 += clock() + tstart;
-	time1 /= CLOCKS_PER_SEC;
-	cout << "Fill vector used time was: " << time1*1000 << "ms" << endl;
-	cout << "Vector" << endl;
-	for_each(v.begin(), v.end(), print);
+// Vergleichsfunktion für die queue
+auto compare_letters = [](char a, char b) {
+    if (isupper(a) && islower(b)) { return a > (b - 'a' + 'A'); }
+    else if (isupper(a) && isupper(b)) { return a > b; }
+    else if (islower(a) && isupper(b)) { return (a - 'a' + 'A') > b; }
+    else { return a > b; }
+};
 
-	//Sortieren der Buchstaben + Zeit messen
-	priority_queue<char, vector<char>, decltype(Compare)> sortedLetters(Compare);
-	tstart = clock();
-	for (char c : v)
-		sortedLetters.push(c);
-	time1 += clock() + tstart;
-	time1 /= CLOCKS_PER_SEC;
+int main() {
+    int n;
+    cout << "Hello, Char World!" << endl;
+    cout << "Enter the number of characters: ";
+    cin >> n;
 
-	cout << "Fill queue used time was: " << time1*1000 << "ms" << endl;
-	cout << "Queue" << endl;
+    // Vektor anlegen und mit Zufallsbuchstaben füllen
+    vector<char> v(n);
+    auto tstart = chrono::high_resolution_clock::now();
+    generate(v.begin(), v.end(), create_random_letter);
+    auto elapsed = chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - tstart).count();
+    cout << "Fill vector used time was: " << elapsed << "ms" << endl;
+    cout << "Vector" << endl;
+    for_each(v.begin(), v.end(), [](char a) { cout << a << endl; });
 
-	print_queue(sortedLetters);
-
-	    cout << "Fill queue used time was: " << time1*1000 << "ms" << endl;
+    // Buchstaben sortieren und in eine queue einfügen
+    priority_queue<char, vector<char>, decltype(compare_letters)> sorted_letters(compare_letters);
+    tstart = chrono::high_resolution_clock::now();
+    for (char c : v)
+        sorted_letters.push(c);
+    elapsed = chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - tstart).count();
+    cout << "Fill queue used time was: " << elapsed << "ms" << endl;
     cout << "Queue" << endl;
-	return 0;
+    print_queue(sorted_letters);
+
+    return 0;
 }

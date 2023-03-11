@@ -2,40 +2,55 @@
 #include <fstream>
 
 int main() {
-
-
-  // Auslesen
-  double wert_parallel;
-  double wert_sequentiell;
-
+  // Variablen für Werte aus Dateien
+  double wert_parallel, wert_sequentiell;
+  
+  // Dateien öffnen und Werte auslesen
   std::ifstream file("parallel.txt");
-  while (file >> wert_parallel) {
-    std::cout << "Parallel: Tp=" << wert_parallel << std::endl;
+  if (file.is_open()) {
+    file >> wert_parallel;
+    file.close();
+  } else {
+    std::cerr << "Fehler: Konnte Datei 'parallel.txt' nicht öffnen!" << std::endl;
+    return 1;
   }
-
+  
   std::ifstream file1("sequentiell.txt");
-  while (file1 >> wert_sequentiell) {
-    std::cout << "Sequentiell: Ts=" << wert_sequentiell << std::endl;
+  if (file1.is_open()) {
+    file1 >> wert_sequentiell;
+    file1.close();
+  } else {
+    std::cerr << "Fehler: Konnte Datei 'sequentiell.txt' nicht öffnen!" << std::endl;
+    return 1;
   }
-
-  double Speed_up;
-
-  Speed_up=wert_sequentiell/wert_parallel;
-  double cpu_cores=4;
-  //grep "cpu cores" /proc/cpuinfo | uniq -> Terminal zum Abfragen der Kerne
+  
+  // Speedup berechnen und ausgeben
+  double Speed_up = wert_sequentiell / wert_parallel;
   std::cout << "Parallelelitätsgewinn: S=" << Speed_up << std::endl;
-
-  if (Speed_up == cpu_cores){
+  
+  // CPU-Kerne auslesen und Effizienz berechnen
+  std::ifstream cpuinfo("/proc/cpuinfo");
+  std::string line;
+  int cpu_cores = 1;
+  while (std::getline(cpuinfo, line)) {
+    if (line.find("cpu cores") != std::string::npos) {
+      cpu_cores = std::stoi(line.substr(line.find(":") + 2));
+      break;
+    }
+  }
+  double Effizienz = Speed_up / cpu_cores;
+  std::cout << "Effizienz: E=" << Effizienz << std::endl;
+  
+  // Parallelitätsgewinn bestimmen und ausgeben
+  if (Speed_up == cpu_cores) {
     std::cout << "Parallelitätsgewinn ist linear" << std::endl;
-  } else if( Speed_up > cpu_cores){
+  } else if (Speed_up > cpu_cores) {
     std::cout << "Parallelitätsgewinn ist superlinear" << std::endl;
-  } else if( Speed_up < cpu_cores){
+  } else {
     std::cout << "Parallelitätsgewinn ist sublinear" << std::endl;
   }
+  
   std::cout << "Info: E=1 -> r Parallele Algorithmus kostenoptimal" << std::endl;
-  std::cout << "Effizienz: E=" << Speed_up/cpu_cores << std::endl;
-
-
 
   return 0;
 }

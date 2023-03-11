@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /opt/intel/oneapi/tbb/2021.6.0/include
+CXX_INCLUDES = 
 
 CXX_FLAGS = -std=gnu++20
 

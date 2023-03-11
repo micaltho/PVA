@@ -5,97 +5,57 @@
 
 #include <iostream>
 #include <vector>
-#include <stdlib.h>
-#include <time.h>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
-#include <string>
 #include <chrono>
-#include <numeric>
 #include <execution>
 
-using namespace std;
-
-vector<string> tokenize(string str, char delim)
+std::vector<std::string> tokenize(const std::string& str, const char delim)
 {
-    vector<string> result;
-    vector<int> char_index;
-    vector<int> indizes;
-    vector<int> partial;
-    vector<int> partial_2;
-    string word;
+    std::vector<std::string> tokens;
 
-    char_index.resize(str.size());
-    indizes.resize(str.size());
+    auto start = str.begin();
+    auto end = str.begin();
 
-    /*
-     lmbda ausdruck example:
-      [&](auto &c) { return (c != delim) ? 1 : 0; }
-      [&]: gebundene variablen
-      (auto &c): Parameter Liste
-      {return (c != delim) ? 1 : 0;}: Anweisungsblock
-    */
-    transform(execution::par, str.begin(), str.end(), char_index.begin(), [&](auto &c)
-              { return (c != delim) ? 1 : 0; });
+    while (end != str.end())
+    {
+        end = std::find(start, str.end(), delim);
+        tokens.push_back(std::string(start, end));
+        start = std::next(end);
+    }
 
-    transform(execution::par, str.begin(), str.end(), indizes.begin(), [](auto &i)
-              { return 1; });
-
-    partial.resize(str.size());
-    partial_2.resize(str.size());
-
-    exclusive_scan(execution::par, char_index.begin(), char_index.end(), partial.begin(), 0);
-    exclusive_scan(execution::par, indizes.begin(), indizes.end(), partial_2.begin(), 0);
-
-    result.resize(str.size());
-    word.resize(str.size());
-
-
-    for_each(partial_2.begin(), partial_2.end(), [&](auto &i)
-             {
-                 if (char_index.at(i) == 1)
-                 {
-                     word.push_back(str.at(i));
-                 }
-                 else
-                 {  
-                     result.push_back(word);
-                     word = "";
-                 }
-             });
-    return result;
+    return tokens;
 }
 
 int main()
 {
-
     // read data as string
-    ifstream text("karlmay.txt");
-    stringstream ss;
+    std::ifstream text("karlmay.txt");
 
     if (!text.is_open())
     {
-        cerr << "Could not open the file " << std::endl;
+        std::cerr << "Could not open the file" << std::endl;
+        return 1;
     }
 
+    std::stringstream ss;
     ss << text.rdbuf();
-    string result = ss.str();
+    std::string result = ss.str();
 
     //begin with tokenize an stop time
     auto t1 = std::chrono::high_resolution_clock::now();
-    vector<string> tokens = tokenize(result, ' ');
+    std::vector<std::string> tokens = tokenize(result, ' ');
     auto t2 = std::chrono::high_resolution_clock::now();
 
     //calculate time 
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
-/*
-    for_each(tokens.begin(), tokens.end(), [&](auto token)
-             { cout << token << endl; });
-*/       
-    cout << "Parallel: " << ms.count() << " ms" << endl;
+    
+    std::cout << "Time taken: " << ms.count() << " ms" << std::endl;
 
     std::ofstream file("parallel.txt");
     file << ms.count();
     file.close();
+    
+    return 0;
 }
+
